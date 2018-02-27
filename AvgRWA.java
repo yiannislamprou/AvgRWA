@@ -36,7 +36,7 @@
         for(int i = 0; i < numIterations; i++){
            temporalCover += avg.coverTime(G, n, p, q); 
         }
-        temporalCover = Math.round(1.0*sum/numIterations);
+        temporalCover = Math.round(1.0*temporalCover/numIterations);
          
         // Compute Min/Max Degree
         int Delta = 0, delta = n;
