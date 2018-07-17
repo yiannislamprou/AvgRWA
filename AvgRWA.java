@@ -2,8 +2,8 @@
  // Author:         Ioannis Lamprou
  // Description:    Experiments on the cover time of a Random Walk on what's Available
  
- import java.lang.*;
- import java.util.*;
+ import java.lang.Math;
+ import java.util.ArrayList;
  
  public class AvgRWA{
      
@@ -14,7 +14,7 @@
         // Run as AvgRWA <threshold> <number-of-nodes> <p> <q>
         // threshold = 1 for clique, threshold = 0 for path
         
-        final long numIterations = 1000;
+        final long numIterations = 1000; // modify accordingly
          
         double randomThreshold = Double.parseDouble(args[0]);
         int n = Integer.parseInt(args[1]);
@@ -25,18 +25,18 @@
         ArrayList<Edge> G = new ArrayList<Edge>(avg.createGraph(n));  // created once; experiments on same graph; "warm start"
          
         // Static cover time
-        long staticCover = 0;
+        double staticCover = 0.0;
         for(int i = 0; i < numIterations; i++){
            staticCover += avg.coverTime(G, n, 1, 0);
         }     
-        staticCover = Math.round(1.0*staticCover/numIterations);
+        staticCover = 1.0*staticCover/numIterations;
          
         // Temporal cover time
-        long temporalCover = 0;
+        double temporalCover = 0.0;
         for(int i = 0; i < numIterations; i++){
            temporalCover += avg.coverTime(G, n, p, q); 
         }
-        temporalCover = Math.round(1.0*temporalCover/numIterations);
+        temporalCover = 1.0*temporalCover/numIterations;
          
         // Compute Min/Max Degree
         int Delta = 0, delta = n;
